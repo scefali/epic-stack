@@ -1,4 +1,4 @@
-app = "epic-stack-template"
+app = "epic-stack"
 kill_signal = "SIGINT"
 kill_timeout = 5
 processes = [ ]
@@ -13,7 +13,10 @@ source = "data"
 destination = "/data"
 
 [env]
-# SENTRY_DSN =
+  SENTRY_DSN = "https://03684653b69847cd8d7bb840a5ac2206@o4505059212656640.ingest.sentry.io/4505166227963904"
+  SENTRY_AUTH_TOKEN = "a7414007ba284fcdb8fb799f16f6fa1da85078e50a87487fbc93ddd82cf9a020"
+  SENTRY_ORG = "openai-remix"
+  SENTRY_PROJECT = "epicstack"
 
 [[services]]
 internal_port = 8080
