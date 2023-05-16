@@ -63,12 +63,12 @@ With that context, here are a few things you get today:
 - Linting with [ESLint](https://eslint.org/)
 - Static Types with [TypeScript](https://typescriptlang.org/)
 - Runtime schema validation with [zod](https://zod.dev/)
+- Error, performance, and replay monitoring with [Sentry](https://sentry.io/)
 
 And that’s what we have today, here are some things that will likely find their
 way into the Epic Stack in the future:
 
 - Powerful, yet simple sitemap control
-- Error monitoring with [Sentry](https://sentry.io/welcome/)
 - Ecommerce support with [Stripe](https://stripe.com/)
 - Ethical site analytics with [fathom](https://usefathom.com/)
 - Internationalization
@@ -99,7 +99,7 @@ This starts your app in development mode, rebuilding assets on file changes.
 The database seed script creates a new user with some data you can use to get
 started:
 
-- Email: `kody@epicweb.dev`
+- Username: `kody`
 - Password: `kodylovesyou`
 
 ### Relevant code
@@ -123,10 +123,21 @@ Prior to your first deployment, you'll need to do a few things:
   fly auth signup
   ```
 
-  > **Note:** If you have more than one Fly account, ensure that you are signed
+  > **Note**: If you have more than one Fly account, ensure that you are signed
   > into the same account in the Fly CLI as you are in the browser. In your
   > terminal, run `fly auth whoami` and ensure the email matches the Fly account
   > signed into the browser.
+
+  > **Note**: The following instructions will be improved soon. Eventually most
+  > of these steps will be replaced with a simple `fly launch` command which
+  > will prompt you for what you need. For now the steps below are manual.
+
+  > **Warning**: This template is currently only configured to work for Fly v1
+  > apps. If you just created your account you are probably running on Fly v2
+  > which is ultimately preferable, but will require a few changes. This is
+  > temporary and will be fixed soon. See
+  > [#22](https://github.com/epicweb-dev/epic-stack/discussions/22) for more
+  > info.
 
 - Create two apps on Fly, one for staging and one for production:
 
@@ -199,6 +210,14 @@ Now that everything is set up you can commit and push your changes to your repo.
 Every commit to your `main` branch will trigger a deployment to your production
 environment, and every commit to your `dev` branch will trigger a deployment to
 your staging environment.
+
+- **Create a Sentry account.** (Can be deferred to later)
+
+NOTE: this step is only required if you want to use Sentry for monitoring.
+
+Create a Sentry account with a Remix project [here](https://sentry.io/signup/?project_platform=javascript-remix)
+
+Copy the DSN from the code snippet to your `fly.toml` file in the `env` section and name it `SENTRY_DSN`. 
 
 ### Connecting to your database
 
